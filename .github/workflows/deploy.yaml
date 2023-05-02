@@ -21,8 +21,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /home/admina/flk
-            git pull origin master
+            cd /home/admina/new/cd
+            git pull
       - name: DropGuni
         continue-on-error: true
         uses: appleboy/ssh-action@master
@@ -32,7 +32,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /home/admina/flk
+            cd /home/admina/new/cd
             pkill -f gunicorn
             gunicorn3 --workers=3 app:app --daemon
       - name: UpGuni
@@ -43,5 +43,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /home/admina/flk
+            cd /home/admina/new/cd
             gunicorn3 --workers=3 app:app --daemon
