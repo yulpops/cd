@@ -8,7 +8,7 @@ app.debug = True
 
 @app.route('/', methods=['GET'])
 def hello():
-    return 'New Hello World !!'
+    return 'Test Hello World !!'
 
 
 @app.route("/hello",)
