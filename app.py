@@ -10,17 +10,6 @@ app.debug = True
 def hello():
     return 'New Hello World !!'
 
-@app.route('/api', methods=['GET', 'POST'])
-def api():
-    """
-    /api entpoint
-    GET - returns json= {'status': 'test'}
-    POST -  {
-            name - str not null
-            age - int optional
-            }
-    :return:
-    """
 
 @app.route("/hello",)
 def page():
