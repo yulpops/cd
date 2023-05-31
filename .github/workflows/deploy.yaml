@@ -7,12 +7,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+
+
       - name: Checkout code
         uses: actions/checkout@v2
+
+
       - name: Install dependencies
         run: |
           sudo apt update && sudo apt install -y python3-pip
           pip3 install -r requirements.txt
+
+
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
         with:
@@ -23,6 +29,9 @@ jobs:
           script: |
             cd /home/admina/new/cd
             git pull
+
+
+
       - name: DropGuni
         continue-on-error: true
         uses: appleboy/ssh-action@master
@@ -34,7 +43,8 @@ jobs:
           script: |
             cd /home/admina/new/cd
             pkill -f gunicorn
-            gunicorn3 --workers=3 app:app --daemon
+
+
       - name: UpGuni
         uses: appleboy/ssh-action@master
         with:
