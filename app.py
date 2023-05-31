@@ -15,6 +15,10 @@ def hello():
 def page():
     return render_template("hello.html")
 
+@app.route("/main",)
+def page2():
+    return render_template("index.html")
+
 def main():
     app.run(port=8000)
 
