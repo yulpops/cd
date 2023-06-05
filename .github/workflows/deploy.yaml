@@ -12,6 +12,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install dependencies
+        run: |
+          sudo apt update && sudo apt install -y python3-pip
+          pip3 install -r requirements.txt
+          python app.py
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
