@@ -4,7 +4,6 @@ from flask import request, jsonify,render_template
 app = Flask(__name__)
 app.debug = True
 
-asfasfa
 
 @app.route('/', methods=['GET'])
 def hello():
