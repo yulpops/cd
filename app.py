@@ -9,7 +9,7 @@ app.debug = True
 def hello():
     return 'Last Hello World !!'
 
-ww
+
 @app.route("/hello",)
 def page():
     return render_template("hello.html")
