@@ -17,23 +17,11 @@ jobs:
           sudo apt update && sudo apt install -y python3-pip
           pip3 install -r requirements.txt
         
-      - name: Run Flask app
-        run: python app.py 
+      - name: Run Flask tests
+        run: |
+          python -m pytest tst.py
 
       - name: Deploy to Server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd /home/admina/new/cd
-            git pull
-
-
-
-      - name: DropGuni
         continue-on-error: true
         uses: appleboy/ssh-action@master
         with:
@@ -43,16 +31,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /home/admina/new/cd
+            git pull
             pkill -f gunicorn
-
-
-      - name: UpGuni
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd /home/admina/new/cd
             gunicorn3 --workers=3 app:app --daemon
+
