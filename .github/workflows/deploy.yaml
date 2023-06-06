@@ -12,16 +12,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install dependencies
+      - name: Install dependencies #установка настроек
         run: |
-          sudo apt update && sudo apt install -y python3-pip
+          sudo apt update && sudo apt install -y python3-pip 
           pip3 install -r requirements.txt
-        
-      - name: Run Flask tests
+        #обновление информации о пакетах. устанавливаем пип для питона. уттснавливает все библиотеки из файла requirements
+
+      - name: Run Flask tests #запускаем тест. в случае если тест не проходит, то обновление сайта не произойдёт
         run: |
           python -m pytest tst.py
 
-      - name: Deploy to Server
+      - name: Deploy to Server #подключение к серверу используя внутренню функцию подключения к другому серверу
         continue-on-error: true
         uses: appleboy/ssh-action@master
         with:
